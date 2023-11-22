@@ -1,10 +1,8 @@
 import { loadPyodide } from "pyodide"
 
-const pyodideVersion = "0.24.1"
-
 // Load python
 const p = await loadPyodide({
-  indexURL: `https://cdn.jsdelivr.net/pyodide/v${pyodideVersion}/full`,
+  indexURL: "pyodide",
 })
 
 // Setup stdout
