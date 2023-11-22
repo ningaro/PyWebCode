@@ -7,6 +7,11 @@ const pwaOptions: Partial<VitePWAOptions> = {
   devOptions: {
     enabled: true,
   },
+  workbox: {
+    globPatterns: ["**/*.{js,wasm,zip,json,css,html}"],
+    // Max file size - 30MB
+    maximumFileSizeToCacheInBytes: 31457280,
+  },
   includeAssets: ["**/*"],
   manifest: {
     theme_color: "#fff",
