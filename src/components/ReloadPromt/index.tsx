@@ -1,4 +1,12 @@
-import "./ReloadPromt.css"
+import {
+  Box,
+  Button,
+  Group,
+  Notification,
+  Overlay,
+  Stack,
+  Text,
+} from "@mantine/core"
 
 import { useRegisterSW } from "virtual:pwa-register/react"
 
@@ -23,31 +31,42 @@ export function ReloadPrompt() {
   }
 
   return (
-    <div className="ReloadPrompt-container">
-      {(offlineReady || needRefresh) && (
-        <div className="ReloadPrompt-toast">
-          <div className="ReloadPrompt-message">
-            {offlineReady ? (
-              <span>App ready to work offline</span>
-            ) : (
-              <span>
-                New content available, click on reload button to update.
-              </span>
+    <>
+      {(offlineReady || needRefresh) && <Overlay blur="3" />}
+      <Box
+        style={({ breakpoints }) => ({
+          position: "fixed",
+          left: 0,
+          right: 0,
+          top: "1rem",
+          margin: "auto",
+          width: "50vw",
+          zIndex: "300",
+          [`@media (maxWidth: ${breakpoints.xl})`]: {
+            width: "80vw",
+          },
+        })}
+      >
+        {(offlineReady || needRefresh) && (
+          <Notification
+            color="cyan"
+            title={
+              offlineReady ? "Ready to work offline" : "New content available"
+            }
+            style={{}}
+            onClose={() => close()}
+          >
+            {needRefresh && (
+              <Stack align="flex-start" gap="xs">
+                <Text size="sm">Click on reload button to update</Text>
+                <Button size="xs" onClick={() => updateServiceWorker(true)}>
+                  Reload
+                </Button>
+              </Stack>
             )}
-          </div>
-          {needRefresh && (
-            <button
-              className="ReloadPrompt-toast-button"
-              onClick={() => updateServiceWorker(true)}
-            >
-              Reload
-            </button>
-          )}
-          <button className="ReloadPrompt-toast-button" onClick={() => close()}>
-            Close
-          </button>
-        </div>
-      )}
-    </div>
+          </Notification>
+        )}
+      </Box>
+    </>
   )
 }
