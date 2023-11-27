@@ -2,7 +2,8 @@ import { loadPyodide } from "pyodide"
 
 // Load python
 const p = await loadPyodide({
-  indexURL: "pyodide",
+  indexURL:
+    import.meta.env.MODE === "production" ? "pyodide" : "/node_modules/pyodide",
 })
 
 // Setup stdout
