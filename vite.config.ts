@@ -5,7 +5,7 @@ import { VitePWA, VitePWAOptions } from "vite-plugin-pwa"
 
 const pwaOptions: Partial<VitePWAOptions> = {
   devOptions: {
-    enabled: true,
+    enabled: false,
   },
   workbox: {
     globPatterns: ["**/*.{js,wasm,zip,json,css,html}"],
@@ -52,6 +52,6 @@ export default defineConfig({
     format: "es",
   },
   server: {
-    open: false,
+    open: true,
   },
 })
