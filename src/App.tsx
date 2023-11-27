@@ -12,9 +12,9 @@ export default function App() {
   return (
     <>
       <ReloadPrompt />
-      <CodeExecButton codeExec={codeExec} />
       <Flex direction="column" p="sm" h="100%" gap="md">
         <CodeArea code={code} setCode={setCode} />
+        <CodeExecButton codeExec={codeExec} disabled={code.length === 0} />
         <Console
           data={consoleHistory}
           clearConsoleHistory={clearConsoleHistory}
