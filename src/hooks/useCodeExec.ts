@@ -33,5 +33,9 @@ export function useCodeExec() {
     compile(code)
   }, [code, compile])
 
-  return { code, consoleHistory, setCode, codeExec }
+  const clearConsoleHistory = () => {
+    setConsoleHistory([])
+  }
+
+  return { code, consoleHistory, setCode, codeExec, clearConsoleHistory }
 }

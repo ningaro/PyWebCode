@@ -1,4 +1,5 @@
 import { loadPyodide } from "pyodide"
+import { IConsoleData } from "../types"
 
 // Load python
 const p = await loadPyodide({
@@ -9,7 +10,12 @@ const p = await loadPyodide({
 // Setup stdout
 p.setStdout({
   batched(msg) {
-    self.postMessage({ isError: false, value: msg })
+    const answer: IConsoleData = {
+      isError: false,
+      value: msg,
+      dateTime: new Date().toISOString(),
+    }
+    self.postMessage(answer)
   },
 })
 
@@ -19,6 +25,11 @@ self.onmessage = async ({ data }: MessageEvent<string>) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     console.error("Execute error", { error })
-    self.postMessage({ isError: true, value: error?.message ?? error })
+    const answer: IConsoleData = {
+      isError: true,
+      value: error?.message ?? error,
+      dateTime: new Date().toISOString(),
+    }
+    self.postMessage(answer)
   }
 }

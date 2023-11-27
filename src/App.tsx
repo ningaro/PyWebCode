@@ -6,14 +6,20 @@ import { ReloadPrompt } from "./components/ReloadPromt"
 import { useCodeExec } from "./hooks/useCodeExec"
 
 export default function App() {
-  const { code, consoleHistory, setCode, codeExec } = useCodeExec()
+  const { code, consoleHistory, setCode, codeExec, clearConsoleHistory } =
+    useCodeExec()
 
   return (
-    <Flex direction="column" p="sm" h="100%">
+    <>
       <ReloadPrompt />
-      <CodeArea code={code} setCode={setCode} />
       <CodeExecButton codeExec={codeExec} />
-      <Console data={consoleHistory} />
-    </Flex>
+      <Flex direction="column" p="sm" h="100%" gap="md">
+        <CodeArea code={code} setCode={setCode} />
+        <Console
+          data={consoleHistory}
+          clearConsoleHistory={clearConsoleHistory}
+        />
+      </Flex>
+    </>
   )
 }
