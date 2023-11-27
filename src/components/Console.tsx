@@ -1,5 +1,6 @@
 import { memo } from "react"
 import { IConsoleData as IConsoleData } from "../types"
+import { Textarea } from "@mantine/core"
 
 interface ConsoleProps {
   data: IConsoleData[]
@@ -12,5 +13,16 @@ export const Console = memo(function ConsoleMemo({ data }: ConsoleProps) {
     ""
   )
 
-  return <textarea value={value} readOnly />
+  return (
+    <Textarea
+      styles={{
+        root: { flex: 1, display: "flex", flexDirection: "column" },
+        wrapper: { flex: 1, display: "flex" },
+        input: { flex: 1, display: "flex" },
+      }}
+      label="Console"
+      value={value}
+      readOnly
+    />
+  )
 })

@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mantine/core": "7.2.2",
+    "@mantine/hooks": "7.2.2",
     "pyodide": "0.24.1",
     "react": "18.2.0",
     "react-dom": "18.2.0"
@@ -24,6 +26,9 @@
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-react-refresh": "0.4.4",
     "isomorphic-fetch": "3.0.0",
+    "postcss": "8.4.31",
+    "postcss-preset-mantine": "1.11.0",
+    "postcss-simple-vars": "7.0.1",
     "typescript": "5.2.2",
     "vite": "5.0.0",
     "vite-plugin-pwa": "0.17.0",

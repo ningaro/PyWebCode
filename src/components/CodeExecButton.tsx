@@ -1,7 +1,11 @@
+import { Button } from "@mantine/core"
+
 interface CodeExecButtonProps {
   codeExec?: () => void
 }
 
 export const CodeExecButton = ({ codeExec }: CodeExecButtonProps) => (
-  <button onClick={codeExec}>Run code</button>
+  <Button onClick={codeExec} fullWidth>
+    Run code
+  </Button>
 )
