@@ -14,14 +14,25 @@ const pwaOptions: Partial<VitePWAOptions> = {
   },
   includeAssets: ["**/*"],
   manifest: {
-    theme_color: "#fff",
-    background_color: "#fff",
+    theme_color: "#1a1b1e",
     display: "standalone",
     scope: "/",
     start_url: "/",
     short_name: "PyWebCode",
     description: "PyWebCode - simple python IDE in browser",
     name: "Python Web Code",
+    icons: [
+      {
+        src: "/icons/pwa-192x192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        src: "/icons/pwa-512x512.png",
+        sizes: "512x512",
+        type: "image/png",
+      },
+    ],
   },
 }
 
