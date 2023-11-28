@@ -3,7 +3,9 @@ import { useCallback, useEffect, useMemo, useState } from "react"
 import { IConsoleData } from "../types"
 
 export function useCodeExec() {
-  const [code, setCode] = useState<string>("Test text")
+  const [code, setCode] = useState<string>(
+    '# You`re code here\nprint("🎉 Hello world!")'
+  )
   const [consoleHistory, setConsoleHistory] = useState<IConsoleData[]>([])
 
   const worker = useMemo(
