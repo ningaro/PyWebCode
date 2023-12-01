@@ -39,6 +39,7 @@ export const Console = memo(function ConsoleMemo({
       <ClearIcon onClick={clearConsoleHistory} isVisible={isDataEmpty} />
       <MoveTopIcon onClick={scrollToTopRecordsList} />
       <Flex
+        p="sm"
         style={{
           height: "100%",
           overflow: "auto",
