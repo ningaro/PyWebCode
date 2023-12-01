@@ -52,11 +52,11 @@ export const Console = memo(function ConsoleMemo({
         ref={recordsListRef}
         gap="md"
       >
-        {data.toReversed().map(({ value, isError, dateTime }) => (
+        {data.toReversed().map(({ value, type, dateTime }) => (
           <Record
             key={value + dateTime}
             value={value}
-            type={isError ? "Error" : "Log"}
+            type={type}
             dateTime={dateTime}
           />
         ))}

@@ -1,10 +1,18 @@
 import { useCallback, useEffect, useMemo, useState } from "react"
 
-import { IConsoleData } from "../types"
+import {
+  IPyodideMessage,
+  IConsoleData,
+  ConsoleTypes,
+  PyodideStatuses,
+} from "../types"
 
 export function useCodeExec() {
   const [code, setCode] = useState<string>(
     '# You`re code here\nprint("🎉 Hello world!")'
+  )
+  const [pyodideStatus, setPyodideStatus] = useState<PyodideStatuses>(
+    PyodideStatuses.loading
   )
   const [consoleHistory, setConsoleHistory] = useState<IConsoleData[]>([])
 
@@ -18,6 +26,13 @@ export function useCodeExec() {
 
   const compile = useCallback(
     async (code: string) => {
+      setPyodideStatus(PyodideStatuses.executing)
+      const consoleRow: IConsoleData = {
+        type: ConsoleTypes.info,
+        value: "Execution starting...",
+        dateTime: new Date().toISOString(),
+      }
+      setConsoleHistory((prev) => [...prev, consoleRow])
       worker.postMessage(code)
     },
     [worker]
@@ -25,8 +40,19 @@ export function useCodeExec() {
 
   useEffect(() => {
     if (window.Worker) {
-      worker.onmessage = ({ data }: MessageEvent<IConsoleData>) => {
-        setConsoleHistory((prev) => [...prev, data])
+      worker.onmessage = ({ data }: MessageEvent<IPyodideMessage>) => {
+        if (data.type === "std")
+          setConsoleHistory((prev) => [...prev, data.data])
+        if (data.type === "status" && data.data === PyodideStatuses.executed) {
+          setPyodideStatus(data.data)
+          const consoleRow: IConsoleData = {
+            type: ConsoleTypes.info,
+            value: "Execution completed",
+            dateTime: new Date().toISOString(),
+          }
+          setConsoleHistory((prev) => [...prev, consoleRow])
+        }
+        if (data.type === "status") setPyodideStatus(data.data)
       }
     }
   }, [worker])
@@ -39,5 +65,12 @@ export function useCodeExec() {
     setConsoleHistory([])
   }
 
-  return { code, consoleHistory, setCode, codeExec, clearConsoleHistory }
+  return {
+    code,
+    consoleHistory,
+    pyodideStatus,
+    setCode,
+    codeExec,
+    clearConsoleHistory,
+  }
 }
