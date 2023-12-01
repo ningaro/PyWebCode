@@ -5,7 +5,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/83a2355d-984f-4f51-8a02-7034811d3b52/deploy-status)](https://app.netlify.com/sites/pywebcode/deploys)
 
 <picture>
-    <img src="https://raw.githubusercontent.com/ningaro/PyWebCode/main/public/icons/apple-touch-icon.png" alt="PyWebCode logo" />
+    <img src="https://github.com/ningaro/PyWebCode/raw/main/public/icons/apple-touch-icon.png" alt="PyWebCode logo" />
 </picture>
 
 Легковесное web-IDE для работы с Python

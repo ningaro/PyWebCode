@@ -4,8 +4,8 @@ English [Русский](https://github.com/ningaro/PyWebCode/blob/main/docs/ru/
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/83a2355d-984f-4f51-8a02-7034811d3b52/deploy-status)](https://app.netlify.com/sites/pywebcode/deploys)
 
-<picture style="width:100%;">
-    <img src="https://raw.githubusercontent.com/ningaro/PyWebCode/main/public/icons/apple-touch-icon.png" alt="PyWebCode logo" />
+<picture>
+    <img src="https://github.com/ningaro/PyWebCode/raw/main/public/icons/apple-touch-icon.png" alt="PyWebCode logo" />
 </picture>
 
 A lightweight web-IDE for working with Python
